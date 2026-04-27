@@ -579,7 +579,7 @@ function App() {
 
         <section
           id="mypicks"
-          className="scroll-mt-36 relative py-24 sm:py-32 bg-linear-to-b from-[#DB5900]/10 to-[#1C1C1C]"
+          className="scroll-mt-36 relative py-24 sm:py-32 bg-linear-to-b from-[#DB5900]/10 to-[#0C0102]"
         >
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-0 top-1/2 h-[450px] w-[450px] -translate-y-1/2 rounded-full bg-rose-900/14 blur-[130px]" />
