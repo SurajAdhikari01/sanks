@@ -1,11 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 import heroImg from "./assets/cover.png";
 import { FaAngleDown } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaMusic } from "react-icons/fa";
+import { HiOutlineLink } from "react-icons/hi";
+
+const socials = [
+  {
+    name: "Instagram",
+    icon: FaInstagram,
+    link: "https://www.instagram.com/sanket_ts/",
+  },
+  {
+    name: "Facebook",
+    icon: FaFacebook,
+    link: "https://www.facebook.com/sanks.ts",
+  },
+];
 
 const sections = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
-  { id: "my picks", label: "My Picks" },
+  { id: "mypicks", label: "My Picks" },
   { id: "platforms", label: "Platforms" },
 ];
 
@@ -88,7 +103,7 @@ const liveMoments = [
   { label: "Release night drops", icon: "🔥" },
 ];
 
-const PLAYER_DURATION_SECONDS = 322;
+const PLAYER_DURATION_SECONDS = 240;
 const WAVEFORM_BARS = [
   0.4, 0.7, 1, 0.6, 0.9, 0.5, 0.8, 0.3, 0.7, 1, 0.6, 0.4, 0.9, 0.5,
 ];
@@ -482,17 +497,13 @@ function App() {
         {/* ═══════════════════ ABOUT ═══════════════════ */}
         <section
           id="about"
-          className="scroll-mt-36 relative overflow-hidden border-t border-white/[0.06] py-24 sm:py-32"
+          className="scroll-mt-36 h-[100vh] relative overflow-hidden bg-linear-to-b from-[#0B0102] to-[#DB5900]/10 py-24 sm:py-32"
         >
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute right-0 top-0 h-[600px] w-[600px] rounded-full bg-rose-900/18 blur-[110px]" />
-          </div>
-
           <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
             <SectionHeading
               kicker="About"
-              title="A design built for listening and discovery"
-              description="The layout is structured like a premium music platform: strong visual hierarchy, an immersive hero, and sections that feel intentional instead of stacked."
+              title="A journey through engineering, security, and sound"
+              description=""
             />
 
             <div className="mt-14 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
@@ -505,72 +516,81 @@ function App() {
                 >
                   "
                 </div>
+
                 <p
                   className="text-xl leading-relaxed text-rose-100/80"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  Sanks is a cinematic landing page concept for a music brand.
-                  It combines a player-like progress header, a dramatic
-                  full-screen hero, and modular content areas that can grow into
-                  artists, releases, events, and playlists.
+                  I started my journey in aerospace engineering, later
+                  transitioning into software development and security systems.
+                  Over time, my focus shifted toward creativity and sound.
+                  Today, I explore music production by recreating and remixing
+                  tracks with my own artistic twist—blending technical precision
+                  with emotion and rhythm.
                 </p>
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {liveMoments.map((m) => (
-                    <span
-                      key={m.label}
-                      className="flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-rose-100/65"
-                      style={{ fontFamily: "var(--font-ui)" }}
-                    >
-                      <span>{m.icon}</span>
-                      {m.label}
-                    </span>
-                  ))}
-                </div>
               </div>
 
-              {/* Highlight cards */}
               <div className="grid gap-4">
-                {aboutHighlights.map((item) => (
-                  <article
-                    key={item.title}
-                    className="sanks-card group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-5 backdrop-blur-md"
-                  >
-                    <div className="flex items-start gap-4">
-                      <span
-                        className="shrink-0 text-[10px] font-bold tracking-[0.2em] text-rose-500/50"
-                        style={{ fontFamily: "var(--font-ui)" }}
-                      >
-                        {item.num}
-                      </span>
-                      <div>
-                        <p className="text-sm font-bold text-rose-50">
-                          {item.title}
-                        </p>
-                        <p className="mt-1.5 text-xs leading-5 text-rose-100/55">
-                          {item.text}
-                        </p>
+                {/* Identity Card */}
+                <div className="sanks-card rounded-2xl border border-white/[0.07] bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-6 backdrop-blur-md">
+                  <p className="text-xs uppercase tracking-[0.25em] text-rose-100/40">
+                    Digital Identity
+                  </p>
+
+                  <div className="mt-3 flex items-center gap-3 text-rose-100">
+                    <FaMusic className="text-rose-400" />
+                    <span className="text-sm font-medium">
+                      Producer • Remixer • Creator
+                    </span>
+                  </div>
+
+                  <p className="mt-3 text-xs leading-5 text-rose-100/50">
+                    Building sound from engineering precision to emotional audio
+                    storytelling.
+                  </p>
+                </div>
+
+                {/* Socials */}
+                {socials.map((s) => {
+                  const Icon = s.icon;
+                  return (
+                    <a
+                      key={s.name}
+                      href={s.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex items-center justify-between rounded-2xl border border-white/[0.07] bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-5 backdrop-blur-md transition-all hover:scale-[1.02] hover:border-rose-500/30"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Icon className="text-lg text-rose-300 group-hover:text-rose-200 transition" />
+                        <span className="text-sm text-rose-100/80">
+                          {s.name}
+                        </span>
                       </div>
-                    </div>
-                    {/* Hover glow line */}
-                    <div className="absolute bottom-0 left-0 right-0 h-px scale-x-0 bg-gradient-to-r from-rose-600 to-pink-400 opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100" />
-                  </article>
-                ))}
+
+                      <HiOutlineLink className="text-rose-100/30 group-hover:text-rose-200 transition" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
         </section>
 
         {/* ═══════════════════ ARTISTS ═══════════════════ */}
-        <section id="artists" className="scroll-mt-36 relative py-24 sm:py-32">
+        <section
+          id="mypicks"
+          className="scroll-mt-36 relative py-24 sm:py-32 bg-linear-to-b from-[#DB5900]/10 to-[#1C1C1C]"
+        >
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-0 top-1/2 h-[450px] w-[450px] -translate-y-1/2 rounded-full bg-rose-900/14 blur-[130px]" />
           </div>
 
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 bg-[#DB]">
             <SectionHeading
-              kicker="Artists"
-              title="Featured creators"
-              description="Hand-picked artists and producers presented with a richer visual system so each card feels like part of the brand."
+              kicker="My Picks"
+              title="Selected sounds and inspirations"
+              description="A personal collection of artists, producers, and sonic styles that shape my creative direction and music identity."
             />
 
             <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
