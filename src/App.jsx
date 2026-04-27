@@ -23,11 +23,28 @@ const sections = [
   { id: "mypicks", label: "My Picks" },
   { id: "platforms", label: "Platforms" },
 ];
-
+const platforms = [
+  { name: "Spotify", type: "Music Streaming", accent: "#1DB954" },
+  { name: "Apple Music", type: "Music Streaming", accent: "#FA243C" },
+  { name: "YouTube Music", type: "Music Streaming", accent: "#FF0000" },
+  { name: "Deezer", type: "Music Streaming", accent: "#FEAA2D" },
+  { name: "iTunes", type: "Digital Store", accent: "#FB5BC5" },
+  { name: "Tidal", type: "HiFi Streaming", accent: "#000000" },
+  { name: "Pandora", type: "Radio Streaming", accent: "#005483" },
+  { name: "Amazon Music", type: "Music Streaming", accent: "#00A8E1" },
+  { name: "Instagram", type: "Social Platform", accent: "#E1306C" },
+  { name: "Facebook", type: "Social Platform", accent: "#1877F2" },
+  { name: "TikTok", type: "Social Platform", accent: "#25F4EE" },
+  { name: "JioSaavn", type: "Music Streaming", accent: "#1ED760" },
+  { name: "Tencent Music", type: "Music Streaming", accent: "#2A5CAA" },
+  { name: "Anghami", type: "Music Platform", accent: "#FF4FA3" },
+  { name: "Boomplay", type: "Music Streaming", accent: "#F6A800" },
+  { name: "Aparat", type: "Video Platform", accent: "#FF6A00" },
+];
 const quickStats = [
-  { label: "Daily Listeners", value: "1.3M", sub: "across platforms" },
-  { label: "Curated Playlists", value: "480+", sub: "and growing" },
-  { label: "Live Sessions", value: "95", sub: "this year" },
+  { label: "Monthly Listeners", value: "1.3M+", sub: "across platforms" },
+  { label: "Remakes", value: "25+", sub: "and growing" },
+  { label: "Streams", value: "10M+", sub: "this year" },
 ];
 
 const featuredArtists = [
@@ -579,7 +596,7 @@ function App() {
 
         <section
           id="mypicks"
-          className="scroll-mt-36 relative py-24 sm:py-32 bg-linear-to-b from-[#DB5900]/10 to-[#0C0102]"
+          className="scroll-mt-36 h-[100vh] relative py-24 sm:py-32 bg-linear-to-b from-[#DB5900]/10 to-[#0C0102]"
         >
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-0 top-1/2 h-[450px] w-[450px] -translate-y-1/2 rounded-full bg-rose-900/14 blur-[130px]" />
@@ -679,110 +696,82 @@ function App() {
           </div>
         </section>
 
-        {/* ═══════════════════ PLAYLISTS ═══════════════════ */}
         <section
-          id="playlists"
-          className="scroll-mt-36 relative border-t border-white/[0.06] py-24 sm:py-32"
+          id="platforms"
+          className="scroll-mt-36 relative bg-[#0D0102] py-24 sm:py-32"
         >
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute right-1/4 top-0 h-[500px] w-[500px] rounded-full bg-rose-900/14 blur-[110px]" />
+            <div className="absolute right-1/4 top-30 h-[500px] w-[500px] rounded-full bg-rose-900/14 blur-[110px]" />
           </div>
 
           <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
             <SectionHeading
-              kicker="Playlists"
-              title="Curated listening lanes"
-              description="Cards arranged like a collection of records ready to play — each one a different mood, each one meticulously ordered."
+              kicker="Platforms"
+              title="Where the sound lives"
+              description="Every release is distributed across major streaming, social, and discovery platforms — connecting music to listeners everywhere."
             />
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2">
-              {featuredPlaylists.map((list) => (
+            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {platforms.map((p) => (
                 <article
-                  key={list.name}
+                  key={p.name}
                   className="sanks-card group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-white/[0.07] to-white/[0.02] shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur-md"
                 >
-                  {/* Left accent bar */}
+                  {/* Accent bar */}
                   <div
                     className="absolute bottom-0 left-0 top-0 w-1 rounded-l-3xl"
                     style={{
-                      background: `linear-gradient(to bottom, ${list.accent}, ${list.accent}44)`,
+                      background: `linear-gradient(to bottom, ${p.accent}, ${p.accent}55)`,
                     }}
                   />
 
                   <div className="p-6 pl-8">
-                    {/* Dot row */}
-                    <div className="mb-5 flex gap-1.5">
-                      {[1, 0.6, 0.35, 0.8].map((op, i) => (
-                        <div
-                          key={i}
-                          className="h-2.5 w-2.5 rounded-full"
-                          style={{ background: list.accent, opacity: op }}
-                        />
-                      ))}
-                    </div>
-
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xl font-bold text-rose-50">
-                          {list.name}
+                        <p className="text-lg font-bold text-rose-50">
+                          {p.name}
                         </p>
-                        <p className="mt-1 text-xs text-rose-100/50">
-                          Updated this week
-                        </p>
-                      </div>
-                      <div className="shrink-0 text-right">
-                        <p
-                          className="text-3xl font-black text-white"
-                          style={{ fontFamily: "var(--font-display)" }}
-                        >
-                          {list.tracks}
-                        </p>
-                        <p
-                          className="text-[10px] uppercase tracking-[0.15em] text-rose-100/45"
-                          style={{ fontFamily: "var(--font-ui)" }}
-                        >
-                          tracks
-                        </p>
-                        <p className="mt-0.5 text-xs text-rose-100/35">
-                          {list.duration}
+                        <p className="mt-1 text-xs uppercase tracking-[0.18em] text-rose-100/50">
+                          {p.type}
                         </p>
                       </div>
+
+                      {/* dot indicator */}
+                      <div
+                        className="h-3 w-3 rounded-full"
+                        style={{ background: p.accent }}
+                      />
                     </div>
 
-                    {/* Playlist waveform / playback bar */}
-                    <div className="mt-5 flex items-end gap-[2px]">
-                      {PLAYLIST_WAVE.map((h, i) => (
+                    {/* mini waveform */}
+                    <div className="mt-6 flex items-end gap-[2px]">
+                      {PLAYLIST_WAVE.slice(0, 14).map((h, i) => (
                         <div
                           key={i}
-                          className="w-[3px] rounded-full transition-opacity duration-300"
+                          className="w-[3px] rounded-full"
                           style={{
                             height: `${h}px`,
-                            background: list.accent,
-                            opacity: i < 14 ? 0.75 : 0.22,
+                            background: p.accent,
+                            opacity: i < 10 ? 0.75 : 0.25,
                           }}
                         />
                       ))}
                     </div>
 
-                    {/* "Mix" tag */}
-                    <div className="mt-5 flex items-center justify-between">
-                      <span
-                        className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-rose-100/60"
-                        style={{ fontFamily: "var(--font-ui)" }}
-                      >
-                        Mix
+                    <div className="mt-6 flex items-center justify-between">
+                      <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-rose-100/60">
+                        Distributed
                       </span>
-                      {/* Play circle */}
+
                       <button
-                        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/[0.08] transition-all hover:bg-white/15 hover:scale-105"
-                        aria-label={`Play ${list.name}`}
-                        style={{ borderColor: `${list.accent}50` }}
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/[0.08] transition-all hover:scale-105 hover:bg-white/15"
+                        style={{ borderColor: `${p.accent}55` }}
                       >
                         <svg
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className="ml-0.5 h-3 w-3"
-                          style={{ color: list.accent }}
+                          className="h-3 w-3"
+                          style={{ color: p.accent }}
                         >
                           <path d="M8 5v14l11-7z" />
                         </svg>
@@ -790,103 +779,15 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Hover glow */}
+                  {/* hover glow */}
                   <div
                     className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     style={{
-                      background: `radial-gradient(circle at 0% 50%, ${list.accent}18, transparent 55%)`,
+                      background: `radial-gradient(circle at 0% 50%, ${p.accent}22, transparent 60%)`,
                     }}
                   />
                 </article>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════ LIVE ═══════════════════ */}
-        <section
-          id="live"
-          className="scroll-mt-36 relative border-t border-white/[0.06] py-24 sm:py-32"
-        >
-          <div className="pointer-events-none absolute inset-0">
-            {/* Horizontal accent glow at top */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-500/45 to-transparent" />
-            <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-rose-900/16 blur-[130px]" />
-          </div>
-
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
-            <SectionHeading
-              kicker="Live"
-              title="Studio moments and release nights"
-              description="Broadcasts feel like events instead of blocks of text, with strong contrast and a richer visual rhythm."
-            />
-
-            <div className="mt-14 overflow-hidden rounded-[2rem] border border-white/[0.09] bg-gradient-to-br from-white/[0.08] to-white/[0.02] shadow-[0_32px_80px_rgba(0,0,0,0.38)] backdrop-blur-md">
-              {/* Top status bar */}
-              <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4 sm:px-8">
-                <div className="flex items-center gap-3">
-                  <span
-                    className="h-2.5 w-2.5 rounded-full bg-rose-500"
-                    style={{
-                      animation: "sanks-pulse-dot 1.4s ease-in-out infinite",
-                      boxShadow: "0 0 8px rgba(244,63,94,0.8)",
-                    }}
-                  />
-                  <span
-                    className="text-xs font-bold uppercase tracking-[0.24em] text-rose-300"
-                    style={{ fontFamily: "var(--font-ui)" }}
-                  >
-                    Live Now
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
-                  <span
-                    className="ml-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-rose-100/55"
-                    style={{ fontFamily: "var(--font-ui)" }}
-                  >
-                    Studio Stream
-                  </span>
-                </div>
-              </div>
-
-              <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.15fr_0.85fr] lg:p-12">
-                {/* Left content */}
-                <div>
-                  <h4
-                    className="text-3xl font-black uppercase leading-tight text-rose-50 sm:text-4xl lg:text-5xl"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    Designed for live performances, premieres, and fan sessions.
-                  </h4>
-                  <p className="mt-5 max-w-lg leading-relaxed text-rose-100/65">
-                    Broadcasts feel like events instead of blocks of text, with
-                    strong contrast and a richer visual rhythm.
-                  </p>
-                  <div className="mt-8">
-                    <WaveformBars color="rgba(244,63,94,0.65)" />
-                  </div>
-                </div>
-
-                {/* Live moment cards */}
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {liveMoments.map((moment) => (
-                    <div
-                      key={moment.label}
-                      className="sanks-card flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-black/25 px-4 py-4"
-                    >
-                      <span className="text-xl">{moment.icon}</span>
-                      <span
-                        className="text-sm font-semibold uppercase tracking-[0.14em] text-rose-100/75"
-                        style={{ fontFamily: "var(--font-ui)" }}
-                      >
-                        {moment.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </section>
