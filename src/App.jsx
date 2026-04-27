@@ -77,48 +77,6 @@ const featuredArtists = [
   },
 ];
 
-const featuredPlaylists = [
-  { name: "Midnight Vinyl", tracks: 24, duration: "1h 42m", accent: "#f59e0b" },
-  { name: "Crimson Bassline", tracks: 18, duration: "58m", accent: "#ef4444" },
-  { name: "Studio Heat", tracks: 31, duration: "2h 10m", accent: "#8b5cf6" },
-  {
-    name: "Underground Pulse",
-    tracks: 22,
-    duration: "1h 28m",
-    accent: "#10b981",
-  },
-];
-
-const aboutHighlights = [
-  {
-    title: "Cinematic layout",
-    text: "Large visual spans and deep contrast turn browsing into an experience.",
-    num: "01",
-  },
-  {
-    title: "Scroll as playback",
-    text: "The navigation bar behaves like a music player and shows your position.",
-    num: "02",
-  },
-  {
-    title: "Premium motion",
-    text: "Glass, glow, and subtle animation keep the interface feeling expensive.",
-    num: "03",
-  },
-  {
-    title: "Scalable sections",
-    text: "The structure is ready for drops, artists, events, and future pages.",
-    num: "04",
-  },
-];
-
-const liveMoments = [
-  { label: "Studio sessions", icon: "🎙" },
-  { label: "Listening premieres", icon: "🎧" },
-  { label: "Artist Q and A", icon: "💬" },
-  { label: "Release night drops", icon: "🔥" },
-];
-
 const PLAYER_DURATION_SECONDS = 240;
 const WAVEFORM_BARS = [
   0.4, 0.7, 1, 0.6, 0.9, 0.5, 0.8, 0.3, 0.7, 1, 0.6, 0.4, 0.9, 0.5,
@@ -282,13 +240,16 @@ function App() {
           : 0,
       );
     };
+
+    // FIX: cancel-and-reschedule instead of skip — every scroll event lands
     const onScroll = () => {
-      if (rafRef.current) return;
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
         updateScroll();
         rafRef.current = null;
       });
     };
+
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach(
@@ -370,7 +331,7 @@ function App() {
                 })}
               </nav>
 
-              {/* Progress scrubber */}
+              {/* Progress scrubber — no transition on width, instant snap */}
               <div className="relative mt-4">
                 <div className="h-px w-full rounded-full bg-white/[0.08]" />
                 <div
@@ -380,7 +341,6 @@ function App() {
                     background:
                       "linear-gradient(90deg,#be123c,#f43f5e,#fda4af)",
                     boxShadow: "0 0 10px rgba(244,114,182,0.55)",
-                    transition: "width 0.1s linear",
                   }}
                 />
                 <span
