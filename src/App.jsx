@@ -577,7 +577,6 @@ function App() {
           </div>
         </section>
 
-        {/* ═══════════════════ ARTISTS ═══════════════════ */}
         <section
           id="mypicks"
           className="scroll-mt-36 relative py-24 sm:py-32 bg-linear-to-b from-[#DB5900]/10 to-[#1C1C1C]"
