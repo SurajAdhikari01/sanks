@@ -39,7 +39,6 @@ const platforms = [
   { name: "Tencent Music", type: "Music Streaming", accent: "#2A5CAA" },
   { name: "Anghami", type: "Music Platform", accent: "#FF4FA3" },
   { name: "Boomplay", type: "Music Streaming", accent: "#F6A800" },
-  { name: "Aparat", type: "Video Platform", accent: "#FF6A00" },
 ];
 const quickStats = [
   { label: "Monthly Listeners", value: "1.3M+", sub: "across platforms" },
